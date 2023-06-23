@@ -1,0 +1,9 @@
+
+
+/* sectionタイトル */
+.section-ttl{
+    font-size: 22px;
+    width: 200px;
+    border-bottom: 3px solid #311ff7;
+    padding: 5px 0;
+}

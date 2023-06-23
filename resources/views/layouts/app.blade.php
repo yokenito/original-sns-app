@@ -13,8 +13,12 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <!-- css -->
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}">
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -76,5 +80,7 @@
             @yield('content')
         </main>
     </div>
+
+    @stack('scripts')
 </body>
 </html>
