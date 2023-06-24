@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\PostImg;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -35,7 +37,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'description_detail' => 'required',
+        ]);
+
+        $post = new Post();
+        $post->content = $request->input('content');
+        $post->user_id = Auth::id();
+        $post->save();
+
+        
     }
 
     /**
