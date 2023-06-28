@@ -5,6 +5,10 @@
     width: 100%;
 }
 
+.bgcwhite{
+    background-color: #fff;
+}
+
 
 /* sectionタイトル */
 .section-ttl{
@@ -38,4 +42,14 @@
     width: 75%;
     display: flex;
     justify-content: flex-end;
+}
+#img_icon{
+    width: 40px;
+}
+#file_up > input{
+    display: none;
+}
+#file_up{
+    margin-left: 10px;
+    color: #0059ff;
 }

@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return view('posts.index');
     }
 
     /**
@@ -38,14 +38,34 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'description_detail' => 'required',
+            'content' => 'required',
         ]);
 
         $post = new Post();
+        $post->title = $request->input('title');
         $post->content = $request->input('content');
         $post->user_id = Auth::id();
         $post->save();
 
+        $files = $request->file('image');
+        if($files != null){
+
+            $user_name = Auth::user()->name;
+            $dir = 'photo/' . $user_name;
+
+            foreach($files as $file){
+                $file_name = $file->getClientOriginalName();
+                $file->storeAs('public/' . $dir, $file_name);
+
+                $post_img = new PostImg();
+                $post_img->post_id = $post->id;
+                $post_img->img_name = $file_name;
+                $post_img->img_path = 'storage/' . $dir . '/' . $file_name;
+                $post_img->save();
+            }
+        }
+
+        return redirect()->route('posts.create');
         
     }
 
