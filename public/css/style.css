@@ -8,6 +8,9 @@
 .bgcwhite{
     background-color: #fff;
 }
+p{
+    margin-bottom: 0;
+}
 
 
 /* sectionタイトル */
@@ -52,4 +55,101 @@
 #file_up{
     margin-left: 10px;
     color: #0059ff;
+}
+
+/* index page */
+.rank-list-box{
+    margin-top: 30px;
+}
+.rank-list{
+    padding-left: 0;
+}
+.rank-list > li{
+    list-style: none;
+}
+.select-btn{
+    padding: 10px;
+    border-radius: 45%;
+    background-color: #ff6f6f;
+    width: 90px;
+    height: 50px;
+}
+.select-btn > a{
+    text-decoration: none;
+    color: #fff;
+    vertical-align: middle;
+}
+.nonselect-btn{
+    padding: 10px;
+    border-radius: 45%;
+    background-color: #ffffff;
+    border: 1px solid #d1d1d1;
+    width: 90px;
+    height: 50px;
+}
+.nonselect-btn > a{
+    text-decoration: none;
+    color: #888888;
+    vertical-align: middle;
+}
+.rank-table{
+    margin: 0 50px;
+    border-collapse: separate;
+    border-spacing: 15px;
+}
+.rank-table > th,
+.rank-table > td{
+    padding: 10px;
+}
+.rank-table > tr:first-child{
+    padding-bottom: 20px;
+}
+#ranktbl-usr{
+    text-align: left;
+    width: 90%;
+    vertical-align: middle;
+}
+#nice_icon{
+    width: 15px;
+    height: 25px;
+    margin-right: 2px;
+}
+#rank{
+    font-size: 20px;
+    margin-top: 5px;
+}
+#user-name{
+    margin-bottom: 0;
+}
+.user-img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+
+
+
+.post-inf{
+    font-size: 18px;
+    margin-top: 5px;
+    color: #656565;
+}
+.post-sec{
+    margin: 10px;
+    font-size: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #dddddd;
+}
+#post-category{
+    font-size: 15px;
+    color: #b7b7b7;
+    margin-bottom: 5px;
+}
+#post-ttl{
+    text-decoration: none;
 }

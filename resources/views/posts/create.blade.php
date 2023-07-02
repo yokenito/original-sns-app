@@ -26,14 +26,14 @@
                 </div>
                 <div class="mt-4 w-75 h-25 postbox">
                     <label for="title" class="form-label">投稿内容</label>
-                    <textarea name="content" class="form-control w-100">{{old('description_detail')}}</textarea>
+                    <textarea name="content" rows="20" class="form-control w-100">{{old('description_detail')}}</textarea>
                 </div>
                 <div>
 
                 </div>
                 <p>※個人情報の入力禁止</p>
                 <div>
-                    <img src="{{asset('storage/img/img.png')}}" alt="img_icon" id="img_icon">
+                    <img src="{{asset('img/img.png')}}" alt="img_icon" id="img_icon">
                     <label for="file_upload" id="file_up">
                         画像の投稿
                         <input type="file" name="image[]" id="file_upload" multiple>

@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'nicecount_post',
+        'funnycount_post',
+        'movingcount_post'
     ];
 
     /**
