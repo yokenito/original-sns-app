@@ -26,7 +26,7 @@
                 </div>
                 <div class="mt-4 w-75 h-25 postbox">
                     <label for="title" class="form-label">投稿内容</label>
-                    <textarea name="content" rows="20" class="form-control w-100">{{old('description_detail')}}</textarea>
+                    <textarea name="content" rows="15" class="form-control w-100">{{old('description_detail')}}</textarea>
                 </div>
                 <div>
 

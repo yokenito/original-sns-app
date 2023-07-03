@@ -7,6 +7,7 @@ use App\Models\PostImg;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -52,19 +53,25 @@ class PostController extends Controller
 
         $files = $request->file('image');
         if($files != null){
-
             $user_name = Auth::user()->name;
             $dir = 'photo/' . $user_name;
 
             foreach($files as $file){
                 $file_name = $file->getClientOriginalName();
-                $file->storeAs('public/' . $dir, $file_name);
+                // $file_path = 'storage/' . $dir . $file_name;
+                if(Storage::exists($file_name)){
+                    $errors = "既に登録済のファイル名です";
+                    return redirect()->route('posts.create')->with('errors');
+                }else{
+                    $file->storeAs('public/' . $dir, $file_name);
 
-                $post_img = new PostImg();
-                $post_img->post_id = $post->id;
-                $post_img->img_name = $file_name;
-                $post_img->img_path = 'storage/' . $dir . '/' . $file_name;
-                $post_img->save();
+                    $post_img = new PostImg();
+                    $post_img->post_id = $post->id;
+                    $post_img->img_name = $file_name;
+                    $post_img->img_path = 'storage/' . $dir . '/' . $file_name;
+                    $post_img->save();
+                }
+                
             }
         }
 

@@ -1,12 +1,14 @@
 /* body用 */
 .graybody{
     background-color: #fafafa;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
+    padding: 1px;
 }
 
 .bgcwhite{
     background-color: #fff;
+    padding: 1px;
 }
 p{
     margin-bottom: 0;
