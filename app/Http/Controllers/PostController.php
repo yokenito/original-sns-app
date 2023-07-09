@@ -7,7 +7,9 @@ use App\Models\PostImg;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -58,8 +60,10 @@ class PostController extends Controller
 
             foreach($files as $file){
                 $file_name = $file->getClientOriginalName();
-                // $file_path = 'storage/' . $dir . $file_name;
-                if(Storage::exists($file_name)){
+                $file_path = 'public/' . $dir .'/'. $file_name;
+                Log::debug(Storage::exists($file_path));
+
+                if(Storage::exists($file_path)){
                     $errors = "既に登録済のファイル名です";
                     return redirect()->route('posts.create')->with('errors');
                 }else{
@@ -70,12 +74,12 @@ class PostController extends Controller
                     $post_img->img_name = $file_name;
                     $post_img->img_path = 'storage/' . $dir . '/' . $file_name;
                     $post_img->save();
+
+                    return redirect()->route('posts.create');
                 }
                 
             }
         }
-
-        return redirect()->route('posts.create');
         
     }
 
@@ -87,7 +91,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $rank_users = User::all();
+        return view('posts.show',compact('post','rank_users'));
     }
 
     /**

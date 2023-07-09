@@ -2,13 +2,13 @@
 
 namespace App\Listeners;
 
+use Illuminate\Auth\Events\Login;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Auth\Events\Login;
 use App\Models\Userlog;
 use Illuminate\Support\Facades\Auth;
 
-class UserLogin
+class LogSuccessfulLogin
 {
     /**
      * Create the event listener.
@@ -23,7 +23,7 @@ class UserLogin
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param  \Illuminate\Auth\Events\Login  $event
      * @return void
      */
     public function handle(Login $event)
