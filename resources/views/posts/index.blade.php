@@ -42,7 +42,7 @@
                     @foreach($posts as $post)
                         <div class="post-sec">
                             <p id="post-category">カテゴリー</p>
-                            <a href="#" id="post-ttl">{{$post->title}}</a>
+                            <a href="{{route('posts.show',$post)}}" id="post-ttl">{{$post->title}}</a>
                             <div class="d-flex post-inf">
                                 <img src="{{asset('img/nice.png')}}" alt="nice_icon" id="nice_icon">
                                 <p>{{$post->nice_sum}}</p>

@@ -39,17 +39,25 @@
             </div>
             <div class="col-7">
                 <div class="bgcwhite">
-                    <div class="d-flex">
+                    <div class="d-flex mt-3">
                         <img class="showuser-img" src="{{asset('img/user-icon.jpeg')}}" alt="showuser_icon">
                         <div>
-                            <p id="showuser-name">{{$post->user->name}} さん</p>
-                            <p class="mt-2">{{substr($post->created_at,0,16)}}</p>
+                            <p id="showuser-name">{{$post->user->name}} <span id="name-res">さん</span></p>
+                            <p id="show-posttime">{{substr($post->created_at,0,16)}}</p>
                         </div>
                     </div>
-                    <div>
+                    <div id="postcontent">
                         <p>{{$post->content}}</p>
                     </div>
-                
+                    <div>
+                        <div class="imgbox">
+                            @foreach($post->postImgs()->get() as $postimg)
+                                <div class="postimg">
+                                    <img src="{{asset($postimg->img_path)}}">
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

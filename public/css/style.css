@@ -131,11 +131,6 @@ p{
     margin-left: 10px;
     margin-right: 10px;
 }
-
-
-
-
-
 .post-inf{
     font-size: 18px;
     margin-top: 5px;
@@ -154,4 +149,40 @@ p{
 }
 #post-ttl{
     text-decoration: none;
+}
+/* show-page */
+.showuser-img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#showuser-name{
+    margin: 5px 0;
+    font-size: 18px;
+}
+#name-res{
+    font-size: 14px;
+    color: #888888;
+}
+#show-posttime{
+    color: #b5b5b5;
+}
+#postcontent{
+    margin-left: 30px;
+    margin-top: 10px;
+}
+.imgbox{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 30px;
+}
+.postimg{
+    width: 25%;
+    margin-left: 50px;
+}
+.postimg img{
+    width: 100%;
 }

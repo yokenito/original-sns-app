@@ -47,13 +47,8 @@ class PostController extends Controller
             'content' => 'required',
         ]);
 
-        $post = new Post();
-        $post->title = $request->input('title');
-        $post->content = $request->input('content');
-        $post->user_id = Auth::id();
-        $post->save();
-
         $files = $request->file('image');
+
         if($files != null){
             $user_name = Auth::user()->name;
             $dir = 'photo/' . $user_name;
@@ -61,24 +56,41 @@ class PostController extends Controller
             foreach($files as $file){
                 $file_name = $file->getClientOriginalName();
                 $file_path = 'public/' . $dir .'/'. $file_name;
-                Log::debug(Storage::exists($file_path));
 
                 if(Storage::exists($file_path)){
                     $errors = "既に登録済のファイル名です";
+                    Log::debug('test');
                     return redirect()->route('posts.create')->with('errors');
-                }else{
-                    $file->storeAs('public/' . $dir, $file_name);
-
-                    $post_img = new PostImg();
-                    $post_img->post_id = $post->id;
-                    $post_img->img_name = $file_name;
-                    $post_img->img_path = 'storage/' . $dir . '/' . $file_name;
-                    $post_img->save();
-
-                    return redirect()->route('posts.create');
                 }
-                
             }
+
+            $post = new Post();
+            $post->title = $request->input('title');
+            $post->content = $request->input('content');
+            $post->user_id = Auth::id();
+            $post->save();
+
+            foreach($files as $file){
+                $file_name = $file->getClientOriginalName();
+                $file_path = 'public/' . $dir .'/'. $file_name;
+
+
+                $file->storeAs('public/' . $dir, $file_name);
+
+                $post_img = new PostImg();
+                $post_img->post_id = $post->id;
+                $post_img->img_name = $file_name;
+                $post_img->img_path = 'storage/' . $dir . '/' . $file_name;
+                $post_img->save();
+            }
+            return redirect()->route('posts.create');
+        } else{
+            $post = new Post();
+            $post->title = $request->input('title');
+            $post->content = $request->input('content');
+            $post->user_id = Auth::id();
+            $post->save();
+            return redirect()->route('posts.create');
         }
         
     }
