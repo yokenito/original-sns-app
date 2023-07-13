@@ -16,4 +16,12 @@ class Post extends Model
     public function postImgs(){
         return $this->hasMany(PostImg::class);
     }
+
+    public function stamps(){
+        return $this->belongsToMany(Stamp::class)->withTimestamps();
+    }
+
+    public function stampuser(){
+        return $this->belongsTo(User::class,'post_stamp');
+    }
 }
