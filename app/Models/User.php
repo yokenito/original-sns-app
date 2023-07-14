@@ -51,4 +51,19 @@ class User extends Authenticatable
     public function userlogs(){
         return $this->hasMany(Userlog::class);
     }
+
+    // お気に入り用
+    public function nices(){
+        return $this->belongsToMany(Post::class,'nices')->withTimestamps();
+    }
+    public function isNice($post_id){
+        return $this->nices()->where('post_id',$post_id)->exists();
+    }
+    public function nice($post_id){
+        if($this->isNice($post_id)){
+
+        } else {
+            $this->nices()->attach($post_id);
+        }
+    }
 }

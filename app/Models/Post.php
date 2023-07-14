@@ -24,4 +24,8 @@ class Post extends Model
     public function stampuser(){
         return $this->belongsTo(User::class,'post_stamp');
     }
+
+    public function nices(){
+        return $this->belongsToMany(User::class,'nices')->withTimestamps();
+    }
 }

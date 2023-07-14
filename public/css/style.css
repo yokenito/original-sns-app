@@ -186,3 +186,13 @@ p{
 .postimg img{
     width: 100%;
 }
+
+.stamp-box{
+    display: flex;
+    margin: 40px;
+    border-right: 1px solid #a5a5a5;
+}
+.stamp-chara{
+    margin-left: 3px;
+    font-size: 18px;
+}

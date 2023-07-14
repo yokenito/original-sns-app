@@ -104,7 +104,8 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $rank_users = User::all();
-        return view('posts.show',compact('post','rank_users'));
+        $user = Auth::user();
+        return view('posts.show',compact('post','rank_users','user'));
     }
 
     /**
