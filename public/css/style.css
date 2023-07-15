@@ -13,6 +13,16 @@
 p{
     margin-bottom: 0;
 }
+button {
+    /* 背景色を無色に */
+    background: transparent;
+    /* 枠線を消す */
+    border: none;
+    /* クリックした際に枠線をnone消す */
+    outline: none;
+    /* 影を消す */
+    box-shadow: none;
+}
 
 
 /* sectionタイトル */
@@ -188,11 +198,11 @@ p{
 }
 
 .stamp-box{
-    display: flex;
-    margin: 40px;
+    margin: 40px 0;
+    padding: 0 40px;
     border-right: 1px solid #a5a5a5;
 }
 .stamp-chara{
-    margin-left: 3px;
+    margin-left: 5px;
     font-size: 18px;
 }
