@@ -28,4 +28,11 @@ class Post extends Model
     public function nices(){
         return $this->belongsToMany(User::class,'nices')->withTimestamps();
     }
+
+    public function isfunnyStamp($user_id){
+        return $this->stamps()->where('stamp_id',1)->where('user_id',$user_id)->exists();
+    }
+    public function isshineStamp($user_id){
+        return $this->stamps()->where('stamp_id',2)->where('user_id',$user_id)->exists();
+    }
 }

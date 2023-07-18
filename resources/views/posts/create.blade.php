@@ -17,6 +17,10 @@
             </div>
         @endif
 
+        <div>
+            <p>{{session('testerrors')}}</p>
+        </div>
+
         <form action="{{route('posts.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div id="postcreate-form">

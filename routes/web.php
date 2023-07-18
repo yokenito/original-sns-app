@@ -25,4 +25,8 @@ Route::prefix('posts')->group(function(){
     Route::get('create',[PostController::class, 'create'])->name('posts.create')->middleware('auth');
     Route::post('store',[PostController::class, 'store'])->name('posts.store')->middleware('auth');
     Route::get('show/{post}',[PostController::class, 'show'])->name('posts.show');
+
+    Route::post('nice/{post_id}',[PostController::class, 'nice'])->middleware('auth');
+    Route::post('funny/{post_id}',[PostController::class, 'funny'])->middleware('auth');
+    Route::post('shine/{post_id}',[PostController::class, 'shine'])->middleware('auth');
 });

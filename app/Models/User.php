@@ -61,7 +61,7 @@ class User extends Authenticatable
     }
     public function nice($post_id){
         if($this->isNice($post_id)){
-
+            $this->nices()->detach($post_id);
         } else {
             $this->nices()->attach($post_id);
         }
