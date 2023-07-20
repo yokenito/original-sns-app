@@ -14,11 +14,11 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('home');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\PostController::class, 'index'])->name('home');
 
 Route::prefix('posts')->group(function(){
     Route::get('index',[PostController::class, 'index'])->name('posts.index');
