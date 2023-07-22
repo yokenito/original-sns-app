@@ -5,7 +5,7 @@
         <div class="mt-4 row">
             <div class="col-4">
                 <div class="text-center bgcwhite ms-5">
-                    <h5 class="mt-3">月間ランキング</h5>
+                    <h5 class="mt-3">N月ランキング</h5>
                     <div class="rank-list-box">
                         <ul class="d-flex justify-content-around rank-list">
                             <li class="select-btn"><a href="#">いいね</a></li>

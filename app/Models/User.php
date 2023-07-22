@@ -51,6 +51,9 @@ class User extends Authenticatable
     public function userlogs(){
         return $this->hasMany(Userlog::class);
     }
+    public function user_usertitles(){
+        return $this->hasMany(User_Usertitle::class);
+    }
 
     // お気に入り用
     public function nices(){
