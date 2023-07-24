@@ -54,6 +54,9 @@ class User extends Authenticatable
     public function user_usertitles(){
         return $this->hasMany(User_Usertitle::class);
     }
+    public function monthrank_user(){
+        return $this->hasMany(Monthrank_User::class);
+    }
 
     // お気に入り用
     public function nices(){

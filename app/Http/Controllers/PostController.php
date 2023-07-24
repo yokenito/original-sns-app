@@ -180,4 +180,8 @@ class PostController extends Controller
             return ;
         }      
     }
+
+    public function stamp($post_id, $stamp_id, $onoff_flag){
+        // スタンプが増えた時にいちいち作らなくて済む　検索は重い処理だから変えたほうが良い
+    }
 }
