@@ -42,12 +42,14 @@ class NiceRank extends Command
         
         
         // いいね数比較
-        $usernicecount = User::join('posts', function ($join){
-            $join->on('users.id','=','posts.user_id')
-                ->where('posts.user_id', '=',1);
-        })->count();
-                        
+        $usernicecount = User::join('posts','users.id','=','posts.user_id')
+            ->join('nices','posts.id','=','nices.post_id')
+            ->select('users.id',User::raw("count(nices.post_id) as count"))
+            ->groupBy('users.id')
+            ->orderBy('count','desc')
+            ->limit(5)->get();
         Log::debug($usernicecount);
+
 
 
         // $users = User::all();
