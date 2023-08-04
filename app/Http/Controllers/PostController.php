@@ -6,11 +6,14 @@ use App\Models\Post;
 use App\Models\PostImg;
 use App\Models\Post_Stamp;
 use App\Models\User;
+use App\Models\MonthRank;
+use App\Models\MonthRank_User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -22,8 +25,13 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderBy('created_at','desc')->get();
-        $rank_users = User::all();
-        return view('posts.index',compact('posts','rank_users'));
+
+        $today = new Carbon('today'); 
+        $rank_users = MonthRank::join('month_rank__users','month_ranks.id','=','month_rank__users.monthrank_id')
+            ->join('users','month_rank__users.user_id','users.id')
+            ->where('monthrank_no','like','%'.$today->year.$today->month.'%')->get();
+        Log::debug($rank_users);
+        return view('posts.index',compact('posts','rank_users','today'));
     }
 
     /**

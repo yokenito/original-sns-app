@@ -52,48 +52,25 @@ class NiceRank extends Command
 
 
 
-        // $users = User::all();
-        // $usernicecount=[];
-        // foreach($users as $user){
-        //     $nicecount = 0;
-        //     $posts = $user->posts()->get();
-        //     foreach($posts as $post){
-        //         $nicecount = $nicecount + count(Nice::where('post_id',$post->id)->whereBetween('created_at', [$monthbegin, $today_use])->get());
-        //         // $nicecount = Nice::where('post_id',$post->id)->whereBetween('created_at', [$monthbegin, $today_use])->sum();
-        //         // post idを配列でとってきてwhere(post_id,[])みたいな取り方？
-        //         // user -> post ユーザーとポストのテーブルをジョインする　その後にNiceテーブルからカウントさむ
-        //         // ジョインジョインでカウントサム（２、３個ジョインする必要がある）
-        //     }
-        //     // DBの時点でselect sumを行なってその上からlimit5をすれば取れる
-        //     $usernicecount[$user->id] = $nicecount;
+
+        // $nicecount = $nicecount + count(Nice::where('post_id',$post->id)->whereBetween('created_at', [$monthbegin, $today_use])->get())
         //     // $usernicecount[] = array[ "id" => $user->id, "count" => $nicecount];
         //     // $usercount[$i]["id"]
-        //     Log::debug($nicecount);
-        // }
-        // arsort($usernicecount);
-        // Log::debug($usernicecount);
-        // array_splice($usernicecount,5,count($usernicecount));
-        // Log::debug($usernicecount);
+        
 
         // 称号
-        // $i = 1;
-        // foreach($usernicecount as $key =>$value){
-        //     $monthrank = new MonthRank();
-        //     $monthrank->monthrank_no = 91 . $today->year . $today->month . 0 . $i;
-        //     $monthrank->monthrank_name = $today->year . "年" . $today->month . "月" . "いいね数" . $i . "位";
-        //     $monthrank->monthrank_count = $value;
-        //     $monthrank->save();
+        for($i=0; $i < 5; $i++){
+            $monthrank = new MonthRank();
+            $monthrank->monthrank_no = 91 . $today->year . $today->month . 0 . $i+1;
+            $monthrank->monthrank_name = $today->year . "年" . $today->month . "月" . "いいね数" . $i+1 . "位";
+            $monthrank->monthrank_count = $usernicecount[$i]["count"];
+            $monthrank->save();
 
-        //     $monthrank_user = new MonthRank_User();
-        //     $monthrank_user->user_id = $key; 
-        //     $monthrank_user->monthrank_id = $monthrank->id;
-        //     $monthrank_user->save();
-        //     if($i == 5){
-        //         break;
-        //     }else{
-        //         $i++;
-        //     }
-        // }
+            $monthrank_user = new MonthRank_User();
+            $monthrank_user->user_id = $usernicecount[$i]["id"]; 
+            $monthrank_user->monthrank_id = $monthrank->id;
+            $monthrank_user->save();
+        }
 
 
     }
