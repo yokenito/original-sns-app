@@ -26,12 +26,16 @@ class PostController extends Controller
     {
         $posts = Post::orderBy('created_at','desc')->get();
 
+        $post_nices = Post::join('nices','posts.id','=','nices.post_id')
+            ->select('posts.id',Post::raw("count(nices.post_id) as count"))
+            ->groupBy('posts.id')
+            ->get();
+        Log::debug($post_nices);
         $today = new Carbon('today'); 
         $rank_users = MonthRank::join('month_rank__users','month_ranks.id','=','month_rank__users.monthrank_id')
             ->join('users','month_rank__users.user_id','users.id')
             ->where('monthrank_no','like','%'.$today->year.$today->month.'%')->get();
-        Log::debug($rank_users);
-        return view('posts.index',compact('posts','rank_users','today'));
+        return view('posts.index',compact('posts','rank_users','today','post_nices'));
     }
 
     /**
@@ -112,9 +116,12 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $rank_users = User::all();
+        $today = new Carbon('today'); 
+        $rank_users = MonthRank::join('month_rank__users','month_ranks.id','=','month_rank__users.monthrank_id')
+            ->join('users','month_rank__users.user_id','users.id')
+            ->where('monthrank_no','like','%'.$today->year.$today->month.'%')->get();
         $user = Auth::user();
-        return view('posts.show',compact('post','rank_users','user'));
+        return view('posts.show',compact('post','rank_users','user','today'));
     }
 
     /**

@@ -9,7 +9,7 @@
         <div class="mt-4 row">
             <div class="col-4">
                 <div class="text-center bgcwhite ms-5">
-                    <h5 class="mt-3">N月ランキング</h5>
+                    <h5 class="mt-3">{{$today->month - 1}}月ランキング</h5>
                     <div class="rank-list-box">
                         <ul class="d-flex justify-content-around rank-list">
                             <li class="select-btn"><a href="#">いいね</a></li>
@@ -24,18 +24,16 @@
                                     <th id="ranktbl-usr">user</th>
                                     <th>count</th>
                                 </tr>
-                                <?php $count = 1; ?>
-                                @foreach($rank_users as $rank_user)
-                                    <tr class="rank-tr">
-                                        <td id="ranktbl-usr" class="d-flex align-items-center">
-                                            <p id="rank">{{$count}}</p>
-                                            <img class="user-img" src="{{asset('img/user-icon.jpeg')}}" alt="user_icon">
-                                            <p id="user-name">{{$rank_user->name}}</p>
-                                        </td>
-                                        <td id="count">100</td>
-                                    </tr>
-                                    <?php $count++; ?>
-                                @endforeach
+                                @for($i=0; $i < 5; $i++)
+                                <tr class="rank-tr">
+                                    <td id="ranktbl-usr" class="d-flex align-items-center">
+                                        <p id="rank">{{$i + 1}}</p>
+                                        <img class="user-img" src="{{asset('img/user-icon.jpeg')}}" alt="user_icon">
+                                        <p id="user-name">{{$rank_users[$i]["name"]}}</p>
+                                    </td>
+                                    <td id="count">{{$rank_users[$i]["monthrank_count"]}}</td>
+                                </tr>
+                                @endfor
                             </table>
                         </div>
                     </div>
