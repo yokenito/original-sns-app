@@ -199,4 +199,11 @@ class PostController extends Controller
     public function stamp($post_id, $stamp_id, $onoff_flag){
         // スタンプが増えた時にいちいち作らなくて済む　検索は重い処理だから変えたほうが良い
     }
+
+    public function funnyrank(){
+        $rank_users = MonthRank::join('month_rank__users','month_ranks.id','=','month_rank__users.monthrank_id')
+            ->join('users','month_rank__users.user_id','users.id')
+            ->where('monthrank_no','like','%'.$today->year.$today->month.'%')->get();
+        return response()->json($rank_users);
+    }
 }

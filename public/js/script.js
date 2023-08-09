@@ -68,3 +68,36 @@ function shine(post_id, elm){
             console.log('失敗');
         });
 }
+
+
+// 面白いランキング
+$('#searchperson-btn').on('click', function(){
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        url: `/original-sns-app/public/posts/funnyrank`,
+        type: "POST",
+        // data:{
+            
+        // }
+    })
+        .done(function(data){
+            // 検索結果を受け取って一覧を表示
+            $('#personsearch-result').empty();
+            for(i=0; i < data.length; i++){
+                $('#personsearch-result').append('<button class="person-set btn btn-outline-dark ms-2" value="' + data[i].id + '">' + data[i].person_name + '</button>');
+            }
+            $('.person-set').on('click', function(){
+                var person_id = $(this).val();
+                var person_name = $(this).text();
+                console.log(person_name, person_id);
+                $('#set-person').val(person_name);
+                $('#set-person-id').val(person_id);
+                $('#searchPersonModal').modal('hide');
+            });
+        })
+        .fail(function(jqXHR, textStatus, errorThrown){
+            console.log('失敗');
+        });
+});

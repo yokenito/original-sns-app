@@ -29,4 +29,6 @@ Route::prefix('posts')->group(function(){
     Route::post('nice/{post_id}',[PostController::class, 'nice'])->middleware('auth');
     Route::post('funny/{post_id}',[PostController::class, 'funny'])->middleware('auth');
     Route::post('shine/{post_id}',[PostController::class, 'shine'])->middleware('auth');
+
+    Route::post('funnyrank',[PostController::class, 'funnyrank'])->name('posts.funnyrank')->middleware('auth');
 });
