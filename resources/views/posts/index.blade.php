@@ -20,10 +20,7 @@
                                     <th id="ranktbl-usr">user</th>
                                     <th>count</th>
                                 </tr>
-                                <?php
-                                    var_dump($rank_users);
-                                ?>
-                                @if($rank_users)
+                                @if(count($rank_users) > 0)
                                     @for($i=0; $i < 5; $i++)
                                     <tr class="rank-tr">
                                         <td id="ranktbl-usr" class="d-flex align-items-center">
