@@ -20,7 +20,7 @@
                                     <th id="ranktbl-usr">user</th>
                                     <th>count</th>
                                 </tr>
-                                @if($rank_users != null)
+                                @if($rank_users)
                                     @for($i=0; $i < 5; $i++)
                                     <tr class="rank-tr">
                                         <td id="ranktbl-usr" class="d-flex align-items-center">
