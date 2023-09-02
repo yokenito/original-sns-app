@@ -20,16 +20,18 @@
                                     <th id="ranktbl-usr">user</th>
                                     <th>count</th>
                                 </tr>
-                                @for($i=0; $i < 5; $i++)
-                                <tr class="rank-tr">
-                                    <td id="ranktbl-usr" class="d-flex align-items-center">
-                                        <p id="rank">{{$i + 1}}</p>
-                                        <img class="user-img" src="{{asset('img/user-icon.jpeg')}}" alt="user_icon">
-                                        <p id="user-name">{{$rank_users[$i]["name"]}}</p>
-                                    </td>
-                                    <td id="count">{{$rank_users[$i]["monthrank_count"]}}</td>
-                                </tr>
-                                @endfor
+                                @if($rank_users != null)
+                                    @for($i=0; $i < 5; $i++)
+                                    <tr class="rank-tr">
+                                        <td id="ranktbl-usr" class="d-flex align-items-center">
+                                            <p id="rank">{{$i + 1}}</p>
+                                            <img class="user-img" src="{{asset('img/user-icon.jpeg')}}" alt="user_icon">
+                                            <p id="user-name">{{$rank_users[$i]["name"]}}</p>
+                                        </td>
+                                        <td id="count">{{$rank_users[$i]["monthrank_count"]}}</td>
+                                    </tr>
+                                    @endfor
+                                @endif
                             </table>
                         </div>
                     </div>
